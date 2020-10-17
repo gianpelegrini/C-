@@ -1,133 +1,133 @@
-# inclui  < iostream >
-usando   namespace  std ;
+#include <iostream>
+using  namespace std;
 
-struct  No {
+struct No {
 	int dado;
-	struct  Não * prox;
+	struct No *prox;
 };
 
-struct  Pilha {
-	Não * topo;
+struct Pilha {
+	No *topo;
 };
 
-Pilha * init () {
-	Pilha * p = nova Pilha;
-	p-> topo = NULL ;
+Pilha* init() {
+	Pilha *p = new Pilha;
+	p->topo = NULL;
 	return p;
 }
 
-int  isEmpty (Pilha * p) {
-	return (p-> topo == NULL );
+int isEmpty(Pilha *p) {
+	return (p->topo == NULL);
 }
 
-void  push (Pilha * p, int v) {
-	Não * não = novo Não;
-	no-> dado = v;
-	não-> prox = p-> topo ;
-	p-> topo = não;
+void push(Pilha *p, int v) {
+	No *no = new No;
+	no->dado = v;
+	no->prox = p->topo;
+	p->topo = no;
 }
 
-int  pop (Pilha * p) {
+int pop(Pilha *p) {
 	int ret;
-	Não * não = p-> topo ;
-	ret = no-> dado ;
-	p-> topo = não-> prox ;
-	grátis (não);
+	No *no = p->topo;
+	ret = no->dado;
+	p->topo = no->prox;
+	free(no);
 	return ret;
 }
 
-void  print (Pilha * p) {
-	Não não;
-	não = p-> topo ;
-	enquanto (não! = NULL ) {
-		cout << no-> dado << endl;
-		não = não-> prox ;
+void print(Pilha *p) {
+	No *no;
+	no = p->topo;
+	while(no != NULL) {
+		cout << no->dado << endl;
+		no = no->prox;
 	}
-	cout << " ------------------------ " << endl;
+	cout << "------------------------" << endl;
 }
 
- último int (Pilha * p) {
+int last(Pilha *p) {
   int ret;
-	Não não;
-	não = p-> topo ;
-		ret = no-> dado ;
+	No *no;
+	no = p->topo;
+		ret = no->dado;
     return ret;
 }
 
-int  contagem (Pilha * p) {
-	int qtde = 0 ;
-	Não não;
-	não = p-> topo ;
-	enquanto (não! = NULL ) {
-        qtde ++;   
-		não = não-> prox ;
+int count(Pilha *p) {
+	int qtde = 0;
+	No *no;
+	no = p->topo;
+	while(no != NULL) {
+        qtde++;   
+		no = no->prox;
 	}
 	return qtde;
 }
 
-void  freePilha (Pilha * p) {
-	Não * não = p-> topo ;
-	enquanto (não! = NULL ) {
-		Não * temp = não-> prox ;
-		grátis (não);
-		não = temp;
+void freePilha(Pilha *p) {
+	No *no = p->topo;
+	while (no != NULL) {
+		No *temp = no->prox;
+		free(no);
+		no = temp;
 	}
-	livre (p);
+	free(p);
 }
 
-int  main ( int argc, char ** argv)
+int main(int argc, char** argv)
 {
-	Pilha * pilhaFloat;
-	pilhaFloat = init ();
-	Pilha * pilhaFloatAtend;
-	pilhaFloatAtend = init ();
-	int ultimoValor = 0 ;
-	int valorAtual = 0 ;
-	status interno = 0 ;
+	Pilha *pilhaFloat;
+	pilhaFloat = init();
+	Pilha *pilhaFloatAtend;
+	pilhaFloatAtend = init();
+	int ultimoValor = 0;
+	int valorAtual = 0;
+	int status = 0;
 	
-	cout << " Tamanho da fila: " << contagem (pilhaFloat) << endl;
-	cout << " 0. Sair. " << endl;
-	cout << " 1. Gerar senha. " << endl;
-	cout << " 2. Realizar atendimento. " << endl;
+	cout << "Tamanho da fila: " << count(pilhaFloat) << endl;
+	cout << "0. Sair." << endl;
+	cout << "1. Gerar senha." << endl;
+	cout << "2. Realizar atendimento." << endl;
 	cin >> status;
 	
-	enquanto (status! = 0 ) {
-	    if (status == 1 )
+	while(status != 0) {
+	    if(status == 1)
 	    {
-	        cout << " Senha Adicionada. " << endl;
-	        valorAtual = valorAtual + 1 ;
-	        push (pilhaFloat, valorAtual);
+	        cout << "Senha Adicionada." << endl;
+	        valorAtual = valorAtual + 1;
+	        push(pilhaFloat, valorAtual);
 	    }
-	    if (status == 2 )
+	    if(status == 2)
 	    {
-	        se ( isEmpty (pilhaFloat)) {
-                cout << " Sem senha para atendimento. " << endl;
+	        if(isEmpty(pilhaFloat)){
+                cout << "Sem senha para atendimento." << endl;
 	        }
-	        else {
-	            ultimoValor = último (pilhaFloat);
-	        push (pilhaFloatAtend, ultimoValor);
-	        cout << " Atendimento realizado: " ;
+	        else{
+	            ultimoValor = last(pilhaFloat);
+	        push(pilhaFloatAtend, ultimoValor);
+	        cout << "Atendimento realizado: ";
 	        cout << ultimoValor << endl;
-	        pop (pilhaFloat);
+	        pop(pilhaFloat);
 	        }
 	    }
-	    cout << " Tamanho da fila: " << contagem (pilhaFloat) << endl;
-        cout << " 0. Sair. " << endl;
-	    cout << " 1. Gerar senha. " << endl;
-	    cout << " 2. Realizar atendimento. " << endl;
+	    cout << "Tamanho da fila: " << count(pilhaFloat) << endl;
+        cout << "0. Sair." << endl;
+	    cout << "1. Gerar senha." << endl;
+	    cout << "2. Realizar atendimento." << endl;
 	    cin >> status;
-	    while (status == 0 && count (pilhaFloat)> 0 ) {
-	        cout << " Não pode finalizar até acabar a fila. " << endl;
-	        cout << " 0. Sair. " << endl;
-	        cout << " 1. Gerar senha. " << endl;
-	        cout << " 2. Realizar atendimento. " << endl;
+	    while(status == 0 && count(pilhaFloat) > 0){
+	        cout << "Não pode finalizar até acabar a fila." << endl;
+	        cout << "0. Sair." << endl;
+	        cout << "1. Gerar senha." << endl;
+	        cout << "2. Realizar atendimento." << endl;
 	        cin >> status;
 	    }
     }
     
-    cout << " Quantidade de senhas atendidas: " << count (pilhaFloatAtend) << endl;
+    cout << "Quantidade de senhas atendidas: " << count(pilhaFloatAtend) << endl;
 
-	freePilha (pilhaFloat);
-	freePilha (pilhaFloatAtend);
-	return  0 ;
+	freePilha(pilhaFloat);
+	freePilha(pilhaFloatAtend);
+	return 0;
 }
